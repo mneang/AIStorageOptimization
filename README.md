@@ -149,7 +149,7 @@ Our AI-powered Gradio Chatbot delivers actionable insights based on sales and in
 1. **Launch the Gradio Interface**:
    - Navigate to the project directory and run:
      ```bash
-     python testopenai.py
+     python aisalesinsights.py
      ```
 2. **Interact with the Chatbot**:
    - Input natural language queries, such as:

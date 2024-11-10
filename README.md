@@ -72,7 +72,7 @@ SmartAIventory addresses this by providing:
 4. **Launch the Gradio Chatbot**
    - Run the Gradio interface for AI insights using the following command:
      ```bash
-     python testopenai.py
+     python aisalesinsights.py
      ```
    - *Screenshot*: Capture the chatbot in action with a sample query and insightful response.
 

@@ -37,6 +37,19 @@ SmartAIventory addresses this by providing:
 ### Data Flow Diagram
 *Include an architecture diagram here. This should visually represent the flow from data ingestion through Synapse Pipelines to Azure SQL, and how the insights are generated and visualized.*
 
+### Database Schema
+The following ERD (Entity-Relationship Diagram) illustrates how our data is structured in the Azure SQL Database:
+
+![Database_Schema_HackathonDB](https://github.com/user-attachments/assets/504bb060-94f1-4635-b02a-ac5884fc6784)
+
+*Description*: The schema highlights key relationships:
+- **Customers**: Stores customer information and regions.
+- **Products**: Captures product details and pricing.
+- **SalesTransactions**: Links customers and products to record sales, with calculated fields for revenue.
+- **InventoryLevels**: Manages stock levels for each product, linked via ProductID.
+
+This schema ensures that our data is well-organized and optimized for efficient querying and analysis, which is pivotal for generating actionable insights.
+
 ---
 
 ## 4. Setup Guide

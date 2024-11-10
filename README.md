@@ -140,6 +140,7 @@ GROUP BY
     ProductID, DATEPART(MONTH, TransactionDate)
 ORDER BY 
     ProductID, Month;
+```
 
 ### Pipeline Functionality
 Using batch processing, our Synapse Pipeline efficiently handles data ingestion and transformation, preparing it for analysis and ensuring high-quality output.

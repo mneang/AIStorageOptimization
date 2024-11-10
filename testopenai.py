@@ -1,23 +1,27 @@
 import openai
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Retrieve API key and endpoint from environment variables
-api_key = os.getenv("AZURE_OPENAI_API_KEY")
-endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
-deployment_id = "gpt-4o"  # Use the deployment ID from the PDF
+api_key = "39fa9771-399e-4640-b877-26c415ceb508"
+endpoint = os.getenv("OPENAI_ENDPOINT")
+deployment_id = "gpt-4o"
 
 # Set up OpenAI configuration
 openai.api_key = api_key
 openai.api_base = endpoint
 openai.api_type = "azure"
-openai.api_version = "2024-02-01"  # Use the API version specified in the PDF
+openai.api_version = "2024-02-01"
 
 # Test prompt
 response = openai.ChatCompletion.create(
-    deployment_id=deployment_id,  # Specify the deployment ID here
+    deployment_id=deployment_id,
     messages=[
-        {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": "Provide a summary of how AI helps with SQL data insights."}
+        {"role": "system", "content": "You are a data insights assistant."},
+        {"role": "user", "content": "Based on the sales data from October and early November, provide a sales forecast and inventory recommendations."}
     ]
 )
 

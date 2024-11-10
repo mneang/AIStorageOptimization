@@ -1,9 +1,13 @@
 import pyodbc
 import os
+from dotenv import load_dotenv
 
-# Retrieve environment variables for SQL Server credentials
-server = os.getenv("AZURE_SQL_SERVER")  # e.g., "your_server.database.windows.net"
-database = os.getenv("AZURE_SQL_DATABASE")  # e.g., "HackathonSQLDB"
+# Load environment variables from .env file
+load_dotenv()
+
+# Retrieve credentials from environment variables
+server = os.getenv("AZURE_SQL_SERVER")
+database = os.getenv("AZURE_SQL_DATABASE")
 username = os.getenv("AZURE_SQL_USERNAME")
 password = os.getenv("AZURE_SQL_PASSWORD")
 driver = "{ODBC Driver 18 for SQL Server}"
@@ -16,7 +20,7 @@ conn = pyodbc.connect(connection_string)
 cursor = conn.cursor()
 
 # Execute a sample query
-cursor.execute("SELECT * FROM customers")  # Replace 'your_table' with an actual table name
+cursor.execute("SELECT * FROM customers")
 for row in cursor:
     print(row)
 

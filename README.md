@@ -123,6 +123,24 @@ Our solution leverages synthetic data to mimic real-world scenarios, covering:
 - **Sales Transactions**: Capturing key details like date, product, quantity, and revenue.
 - **Inventory Levels**: Reflecting stock statuses for efficient supply management.
 
+
+Our solution utilizes efficient data processing to derive actionable insights. Here’s an example of a critical query used in our analysis:
+
+### Monthly Demand Forecast Query
+To forecast product demand and aid in strategic inventory planning, we use the following SQL query:
+
+```sql
+SELECT 
+    ProductID, 
+    DATEPART(MONTH, TransactionDate) AS Month, 
+    SUM(Quantity) AS TotalSales
+FROM 
+    SalesTransactions
+GROUP BY 
+    ProductID, DATEPART(MONTH, TransactionDate)
+ORDER BY 
+    ProductID, Month;
+
 ### Pipeline Functionality
 Using batch processing, our Synapse Pipeline efficiently handles data ingestion and transformation, preparing it for analysis and ensuring high-quality output.
 

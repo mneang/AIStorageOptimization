@@ -158,7 +158,8 @@ Using batch processing, our Synapse Pipeline efficiently handles data ingestion 
 ### User-Centric Design
 Designed with business leaders in mind, the dashboard is intuitive, providing easy-to-understand visuals that drive decision-making.
 
-*Screenshot*: Annotate key visuals to guide judges through the data story.
+![2024-11-09_21h12_25](https://github.com/user-attachments/assets/dd802589-04d6-4717-8480-73547f25ae84)
+
 
 ---
 

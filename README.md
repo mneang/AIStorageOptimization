@@ -201,7 +201,7 @@ Our AI-powered Gradio Chatbot delivers actionable insights based on sales and in
 - **Actionable Insights**: The AI summarizes data trends and suggests practical strategies, making it easy for decision-makers to act.
 - **Clear Visuals**: Easy-to-read tables and bullet points ensure the insights are digestible.
 
-## AI Insights: Keeping It Clear and Actionable
+### AI Insights: Keeping It Clear and Actionable
 
 When it comes to AI-driven recommendations, clarity is king. Here’s how **SmartAIventory** delivers:
 

@@ -69,32 +69,9 @@ This schema ensures that our data is well-organized and optimized for efficient 
 
 ---
 
-## 4. Setup Guide
+## 4. Setup Guide (User or Local)
 
-### Prerequisites
-- **Azure Account**: Access to Microsoft Fabric, Synapse Pipelines, and Azure SQL.
-- **Python Environment**: For running the Gradio-based AI insights interface.
-- **Power BI**: Use either Power BI Desktop or connect via a browser.
-
-### Step-by-Step Setup
-1. **Clone the Repository**
-   ```bash
-   git clone https://github.com/username/SmartAIventory.git
-   cd SmartAIventory
-
-### Step-by-Step Setup
-
-2. **Environment Configuration**
-   - Create a `.env` file in the root directory and add your Azure and OpenAI credentials:
-     ```plaintext
-     AZURE_SQL_SERVER=your_server_name
-     AZURE_SQL_DATABASE=your_database_name
-     AZURE_SQL_USERNAME=your_username
-     AZURE_SQL_PASSWORD=your_password
-     OPENAI_API_KEY=your_openai_api_key
-     OPENAI_API_ENDPOINT=your_openai_api_endpoint
-     ```
-### Note: If you are unable to access the Azure SQL Database due to firewall restrictions, set `USE_AZURE_SQL=false` in the `.env` file to use mock data with SQLite for testing.
+### **FOR USERS**: If you are experiencing firewall restrictions when trying to access the Azure SQL Database, you can switch to mock data using SQLite for testing. To do this, set `USE_AZURE_SQL=false` in the `.env` file. If you have no issues accessing Azure SQL, you can skip this step.
 
 ### Using Mock Data with SQLite (For User Testing)
 We understand that accessing the Azure SQL Database may be challenging due to firewall restrictions or limited permissions. To ensure that everyone can test and experience the full functionality of SmartAIventory, we've implemented a user-friendly option to use mock data with SQLite.
@@ -135,8 +112,31 @@ We understand that accessing the Azure SQL Database may be challenging due to fi
 - **Firewall Restrictions**: If you are able to use Azure SQL and encounter firewall issues, try enabling "Allow Azure services and resources to access this server" in the Azure portal. This may grant access without needing to resort to mock data.
 - **Local Testing**: The mock data setup is optimized for a hassle-free experience, making it easy for anyone to explore and evaluate SmartAIventory's features without requiring Azure access. This ensures that potential contributors and judges can fully appreciate the solution's capabilities.
 
+###**Local Setup**
 
----
+### Prerequisites
+- **Azure Account**: Access to Microsoft Fabric, Synapse Pipelines, and Azure SQL.
+- **Python Environment**: For running the Gradio-based AI insights interface.
+- **Power BI**: Use either Power BI Desktop or connect via a browser.
+
+### Step-by-Step Setup
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/username/SmartAIventory.git
+   cd SmartAIventory
+
+### Step-by-Step Setup
+
+2. **Environment Configuration**
+   - Create a `.env` file in the root directory and add your Azure and OpenAI credentials:
+     ```plaintext
+     AZURE_SQL_SERVER=your_server_name
+     AZURE_SQL_DATABASE=your_database_name
+     AZURE_SQL_USERNAME=your_username
+     AZURE_SQL_PASSWORD=your_password
+     OPENAI_API_KEY=your_openai_api_key
+     OPENAI_API_ENDPOINT=your_openai_api_endpoint
+     ```
 
 3. **Run the Synapse Pipeline**
    - Access Microsoft Fabric and run the Synapse Pipeline to ingest data.

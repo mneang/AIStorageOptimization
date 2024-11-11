@@ -32,10 +32,22 @@ SmartAIventory addresses this by providing:
 ## 3. Technology Architecture Overview
 
 ### Core Technologies
-- **Microsoft Fabric**: For seamless data ingestion and processing.
+- **Microsoft Fabric**: For seamless data ingestion and processing, leveraging the strengths of Synapse Analytics and Azure SQL.
 - **Azure SQL Database**: Secure and centralized storage of sales and inventory data.
-- **Power BI**: Interactive visualizations that offer deep business insights.
-- **Gradio + Azure OpenAI**: An intuitive interface for real-time AI-driven insights.
+- **Power BI**: Interactive visualizations that provide actionable insights for decision-makers.
+- **Gradio + Azure OpenAI**: An intuitive interface for generating AI-driven insights using natural language.
+
+### Why We Chose Batch Processing
+Our decision to use batch processing was deliberate and based on the real-world needs of retail analytics. While real-time data processing is often hyped, it introduces unnecessary complexity and cost when the source systems themselves only update at intervals (e.g., daily or hourly). 
+
+**Batch Processing Advantages:**
+- **Optimal Efficiency**: Since retail data, such as sales transactions and inventory updates, typically refresh at set intervals, batch processing ensures that we efficiently process large volumes of data without straining system resources.
+- **Cost-Effectiveness**: Maintaining real-time analytics infrastructure can be expensive and over-engineered for most retail scenarios. Batch processing strikes the right balance, providing timely insights without unnecessary overhead.
+- **Scalability**: Our architecture is designed to scale effortlessly as data volumes increase, handling everything from daily sales summaries to monthly inventory forecasts.
+
+> *“In retail, it’s not about having data every second—it’s about having the right insights at the right time. Batch processing allows us to deliver this, maximizing impact while minimizing complexity.”*
+
+*Note: The flexibility of our architecture means we can seamlessly integrate real-time components in the future if business needs evolve.*
 
 ### Data Flow Diagram
 ![aistoragearchitecture drawio](https://github.com/user-attachments/assets/07d6c7c8-8aaf-4175-89fb-0940896a978e)
@@ -85,6 +97,7 @@ This schema ensures that our data is well-organized and optimized for efficient 
 
 3. **Run the Synapse Pipeline**
    - Access Microsoft Fabric and run the Synapse Pipeline to ingest data.
+   - Our Synapse Pipeline uses batch processing to efficiently ingest and transform data. This method is optimal for retail scenarios where data updates occur on a regular schedule, ensuring timely and impactful insights without the overhead of real-time analytics.
    ![Screenshot 2024-11-07 at 10 16 15 PM](https://github.com/user-attachments/assets/3fc5276b-0574-4062-b155-bc95110fd5f9)
    *Figure: Azure Synapse Pipeline: Sequential data copy from SalesTransactions, Products, to InventoryLevels.*
 

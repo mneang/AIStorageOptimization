@@ -94,6 +94,49 @@ This schema ensures that our data is well-organized and optimized for efficient 
      OPENAI_API_KEY=your_openai_api_key
      OPENAI_API_ENDPOINT=your_openai_api_endpoint
      ```
+### Note: If you are unable to access the Azure SQL Database due to firewall restrictions, set `USE_AZURE_SQL=false` in the `.env` file to use mock data with SQLite for testing.
+
+### Using Mock Data with SQLite (For User Testing)
+We understand that accessing the Azure SQL Database may be challenging due to firewall restrictions or limited permissions. To ensure that everyone can test and experience the full functionality of SmartAIventory, we've implemented a user-friendly option to use mock data with SQLite.
+
+1. **Setup for Mock Data**
+   - In your `.env` file, set `USE_AZURE_SQL` to `false`:
+     ```plaintext
+     USE_AZURE_SQL=false
+     ```
+   - The script will automatically create an `SQLite` database named `mock_data.db` and populate it with sample data for `Products`, `SalesTransactions`, and `InventoryLevels`.
+
+2. **How the Mock Data Setup Works**
+   - The code will check if the `mock_data.db` file exists:
+     - If it doesn't, it will create the database and populate it with mock data.
+   - This ensures that you can test the Gradio-based AI insights interface seamlessly, even if Azure SQL Database access is unavailable.
+
+3. **Running the Gradio Interface with Mock Data**
+   - **Install Dependencies**:
+     ```bash
+     pip install -r requirements.txt
+     ```
+   - **Launch the Gradio Interface**:
+     ```bash
+     python aisalesinsights.py
+     ```
+   - **Testing the Functionality**:
+     - The Gradio interface will open in your default web browser.
+     - You can type in queries such as *“What are the sales trends for October?”* to get AI-driven insights based on the mock data.
+     - **Data Summary**: The AI will generate a clear and concise summary from the mock sales data.
+     - **AI Insights**: Actionable recommendations will be provided based on the analyzed data trends.
+
+4. **Benefits of the Mock Data Setup**
+   - **User-Friendly**: No need for complicated Azure configurations—simply run the interface locally and experience the full potential of SmartAIventory.
+   - **Accessibility**: Perfect for those who are evaluating the project or contributing to it without direct access to Azure services.
+   - **Reproducibility**: Ensures that your testing experience is smooth, consistent, and reflective of how the AI-driven insights work.
+
+### Important Notes for Users
+- **Firewall Restrictions**: If you are able to use Azure SQL and encounter firewall issues, try enabling "Allow Azure services and resources to access this server" in the Azure portal. This may grant access without needing to resort to mock data.
+- **Local Testing**: The mock data setup is optimized for a hassle-free experience, making it easy for anyone to explore and evaluate SmartAIventory's features without requiring Azure access. This ensures that potential contributors and judges can fully appreciate the solution's capabilities.
+
+
+---
 
 3. **Run the Synapse Pipeline**
    - Access Microsoft Fabric and run the Synapse Pipeline to ingest data.

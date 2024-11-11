@@ -35,14 +35,15 @@ SmartAIventory addresses this by providing:
 - **Gradio + Azure OpenAI**: An intuitive interface for real-time AI-driven insights.
 
 ### Data Flow Diagram
-*Include an architecture diagram here. This should visually represent the flow from data ingestion through Synapse Pipelines to Azure SQL, and how the insights are generated and visualized.*
+![aistoragearchitecture drawio](https://github.com/user-attachments/assets/07d6c7c8-8aaf-4175-89fb-0940896a978e)
+*Figure: SmartAIventory architecture leveraging Microsoft Fabric for data processing and analytics, integrated with AI-driven insights through Gradio and Azure OpenAI.*
 
 ### Database Schema
 The following ERD (Entity-Relationship Diagram) illustrates how our data is structured in the Azure SQL Database:
 
 ![Database_Schema_HackathonDB](https://github.com/user-attachments/assets/504bb060-94f1-4635-b02a-ac5884fc6784)
 
-*Description*: The schema highlights key relationships:
+The schema highlights key relationships:
 - **Customers**: Stores customer information and regions.
 - **Products**: Captures product details and pricing.
 - **SalesTransactions**: Links customers and products to record sales, with calculated fields for revenue.
@@ -80,18 +81,19 @@ This schema ensures that our data is well-organized and optimized for efficient 
 
 3. **Run the Synapse Pipeline**
    - Access Microsoft Fabric and run the Synapse Pipeline to ingest data.
-   - *Screenshot*: Include a snapshot showing successful execution and data ingestion.
+   ![Screenshot 2024-11-07 at 10 16 15 PM](https://github.com/user-attachments/assets/3fc5276b-0574-4062-b155-bc95110fd5f9)
+   *Figure: Azure Synapse Pipeline: Sequential data copy from SalesTransactions, Products, to InventoryLevels.*
 
-4. **Launch the Gradio Chatbot (See below section for more details)**
+4. **Connect Power BI**
+   - Open Power BI and connect to your Azure SQL Database.
+   - *Screenshot*: Show the data connection setup and highlight the dashboard features.
+  
+5. **Launch the Gradio Chatbot (See below section for more details)**
    - Run the Gradio interface for AI insights using the following command:
      ```bash
      python aisalesinsights.py
      ```
    - *Screenshot*: Capture the chatbot in action with a sample query and insightful response.
-
-5. **Connect Power BI**
-   - Open Power BI and connect to your Azure SQL Database.
-   - *Screenshot*: Show the data connection setup and highlight the dashboard features.
    
 ### Launching and Using the Gradio Chatbot
 1. **Ensure Dependencies Are Installed**:
@@ -110,8 +112,6 @@ This schema ensures that our data is well-organized and optimized for efficient 
    - **Output**: The AI assistant will generate tailored recommendations based on the data.
 4. **Stopping the Interface**:
    - To stop the Gradio server, return to your terminal and press `CTRL + C`.
-
-*Screenshot*: Include an image of the Gradio interface in action, highlighting a sample query and response for clarity.  
 
 
 ---
@@ -145,7 +145,6 @@ ORDER BY
 ### Pipeline Functionality
 Using batch processing, our Synapse Pipeline efficiently handles data ingestion and transformation, preparing it for analysis and ensuring high-quality output.
 
-*Screenshot*: Display the Synapse Pipeline configuration and highlight key processing steps.
 
 ---
 
@@ -189,16 +188,13 @@ Our AI-powered Gradio Chatbot delivers actionable insights based on sales and in
      - "Provide inventory recommendations for November."
    - The AI will analyze the data and provide clear, actionable recommendations.
 3. **Sample Output**:
-   - Screenshot: *(Include a screenshot of the chatbot interface responding to a query)*
+  ![Screen Recording 2024-11-10 at 4 22 43 PM](https://github.com/user-attachments/assets/5eec5743-716b-438a-8fee-23e60ce2804d)
+*Figure:* Demonstration of the Gradio AI Chatbot responding to the query "What are the key sales trends for October?" and providing structured data insights and actionable recommendations.
 
 ### Why It’s User-Friendly:
 - **Natural Language Queries**: No need for complex SQL queries. Simply ask questions in plain English.
 - **Actionable Insights**: The AI summarizes data trends and suggests practical strategies, making it easy for decision-makers to act.
 - **Clear Visuals**: Easy-to-read tables and bullet points ensure the insights are digestible.
-
----
-
-*Note*: Include a screenshot showing a sample interaction with the Gradio chatbot. Make sure the image is high quality and clearly demonstrates the AI’s capability.
 
 ---
 

@@ -45,14 +45,18 @@ def fetch_and_summarize_data():
     conn.close()
 
     # Format the sales summary
-    summary_str = "Sales and Inventory Summary:\n"
+    formatted_summary = "### Sales and Inventory Summary:\n"
     for row in sales_summary:
         product_id, product_name, units_sold, total_revenue, stock_level = row
-        summary_str += (f"Product: {product_name} (ID: {product_id}) - "
-                        f"Units Sold: {units_sold}, Total Revenue: ${total_revenue:.2f}, "
-                        f"Stock Level: {stock_level}\n")
+        formatted_summary += (
+            f"- Product: {product_name} (ID: {product_id})\n"
+            f"  - Units Sold: {units_sold}\n"
+            f"  - Total Revenue: ${total_revenue:.2f}\n"
+            f"  - Stock Level: {stock_level}\n\n"
+        )
 
-    return summary_str
+    return formatted_summary
+
 
 # Function to get AI insights based on the summary
 def get_ai_insights(summary):

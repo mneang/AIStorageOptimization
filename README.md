@@ -32,10 +32,22 @@ SmartAIventory addresses this by providing:
 ## 3. Technology Architecture Overview
 
 ### Core Technologies
-- **Microsoft Fabric**: For seamless data ingestion and processing.
+- **Microsoft Fabric**: For seamless data ingestion and processing, leveraging the strengths of Synapse Analytics and Azure SQL.
 - **Azure SQL Database**: Secure and centralized storage of sales and inventory data.
-- **Power BI**: Interactive visualizations that offer deep business insights.
-- **Gradio + Azure OpenAI**: An intuitive interface for real-time AI-driven insights.
+- **Power BI**: Interactive visualizations that provide actionable insights for decision-makers.
+- **Gradio + Azure OpenAI**: An intuitive interface for generating AI-driven insights using natural language.
+
+### Why We Chose Batch Processing
+Our decision to use batch processing was deliberate and based on the real-world needs of retail analytics. While real-time data processing is often hyped, it introduces unnecessary complexity and cost when the source systems themselves only update at intervals (e.g., daily or hourly). 
+
+**Batch Processing Advantages:**
+- **Optimal Efficiency**: Since retail data, such as sales transactions and inventory updates, typically refresh at set intervals, batch processing ensures that we efficiently process large volumes of data without straining system resources.
+- **Cost-Effectiveness**: Maintaining real-time analytics infrastructure can be expensive and over-engineered for most retail scenarios. Batch processing strikes the right balance, providing timely insights without unnecessary overhead.
+- **Scalability**: Our architecture is designed to scale effortlessly as data volumes increase, handling everything from daily sales summaries to monthly inventory forecasts.
+
+> *“In retail, it’s not about having data every second—it’s about having the right insights at the right time. Batch processing allows us to deliver this, maximizing impact while minimizing complexity.”*
+
+*Note: The flexibility of our architecture means we can seamlessly integrate real-time components in the future if business needs evolve.*
 
 ### Data Flow Diagram
 ![aistoragearchitecture drawio](https://github.com/user-attachments/assets/07d6c7c8-8aaf-4175-89fb-0940896a978e)
@@ -57,7 +69,50 @@ This schema ensures that our data is well-organized and optimized for efficient 
 
 ---
 
-## 4. Setup Guide
+## 4. Setup Guide (User or Local)
+
+### **FOR USERS**: If you are experiencing firewall restrictions when trying to access the Azure SQL Database, you can switch to mock data using SQLite for testing. To do this, set `USE_AZURE_SQL=false` in the `.env` file. If you have no issues accessing Azure SQL, you can skip this step.
+
+### Using Mock Data with SQLite (For User Testing)
+We understand that accessing the Azure SQL Database may be challenging due to firewall restrictions or limited permissions. To ensure that everyone can test and experience the full functionality of SmartAIventory, we've implemented a user-friendly option to use mock data with SQLite.
+
+1. **Setup for Mock Data**
+   - In your `.env` file, set `USE_AZURE_SQL` to `false`:
+     ```plaintext
+     USE_AZURE_SQL=false
+     ```
+   - The script will automatically create an `SQLite` database named `mock_data.db` and populate it with sample data for `Products`, `SalesTransactions`, and `InventoryLevels`.
+
+2. **How the Mock Data Setup Works**
+   - The code will check if the `mock_data.db` file exists:
+     - If it doesn't, it will create the database and populate it with mock data.
+   - This ensures that you can test the Gradio-based AI insights interface seamlessly, even if Azure SQL Database access is unavailable.
+
+3. **Running the Gradio Interface with Mock Data**
+   - **Install Dependencies**:
+     ```bash
+     pip install -r requirements.txt
+     ```
+   - **Launch the Gradio Interface**:
+     ```bash
+     python aisalesinsights.py
+     ```
+   - **Testing the Functionality**:
+     - The Gradio interface will open in your default web browser.
+     - You can type in queries such as *“What are the sales trends for October?”* to get AI-driven insights based on the mock data.
+     - **Data Summary**: The AI will generate a clear and concise summary from the mock sales data.
+     - **AI Insights**: Actionable recommendations will be provided based on the analyzed data trends.
+
+4. **Benefits of the Mock Data Setup**
+   - **User-Friendly**: No need for complicated Azure configurations—simply run the interface locally and experience the full potential of SmartAIventory.
+   - **Accessibility**: Perfect for those who are evaluating the project or contributing to it without direct access to Azure services.
+   - **Reproducibility**: Ensures that your testing experience is smooth, consistent, and reflective of how the AI-driven insights work.
+
+### Important Notes for Users
+- **Firewall Restrictions**: If you are able to use Azure SQL and encounter firewall issues, try enabling "Allow Azure services and resources to access this server" in the Azure portal. This may grant access without needing to resort to mock data.
+- **Local Testing**: The mock data setup is optimized for a hassle-free experience, making it easy for anyone to explore and evaluate SmartAIventory's features without requiring Azure access. This ensures that potential contributors and judges can fully appreciate the solution's capabilities.
+
+###**Local Setup**
 
 ### Prerequisites
 - **Azure Account**: Access to Microsoft Fabric, Synapse Pipelines, and Azure SQL.
@@ -85,6 +140,7 @@ This schema ensures that our data is well-organized and optimized for efficient 
 
 3. **Run the Synapse Pipeline**
    - Access Microsoft Fabric and run the Synapse Pipeline to ingest data.
+   - Our Synapse Pipeline uses batch processing to efficiently ingest and transform data. This method is optimal for retail scenarios where data updates occur on a regular schedule, ensuring timely and impactful insights without the overhead of real-time analytics.
    ![Screenshot 2024-11-07 at 10 16 15 PM](https://github.com/user-attachments/assets/3fc5276b-0574-4062-b155-bc95110fd5f9)
    *Figure: Azure Synapse Pipeline: Sequential data copy from SalesTransactions, Products, to InventoryLevels.*
 
